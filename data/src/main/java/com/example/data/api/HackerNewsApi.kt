@@ -1,4 +1,4 @@
-package com.example.data
+package com.example.data.api
 
 import com.example.domain.entity.Entity
 import io.reactivex.Single

@@ -1,6 +1,6 @@
 package com.example.mindevandroidcleanarchitecturedemo.di.module
 
-import com.example.data.HackerNewsApi
+import com.example.data.api.HackerNewsApi
 import com.example.mindevandroidcleanarchitecturedemo.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
