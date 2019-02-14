@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface HackerNewsApi {
 
     @GET("/news")
-    fun getHackerNews(@Query("page") page: Int): Single<Entity.HackerNews>
+    fun getHackerNews(@Query("page") page: Int): Single<List<Entity.HackerNews>>
 }

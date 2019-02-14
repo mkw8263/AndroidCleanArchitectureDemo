@@ -1,4 +1,3 @@
 package com.example.domain.usecase
 
-interface BaseUseCase {
-}
+interface BaseUseCase
