@@ -48,4 +48,11 @@ dependencies {
 
     // ViewModelProvides
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
+    // Reactivex
+    api 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    api 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+
+
+    implementation project(':domain')
 }

@@ -54,9 +54,9 @@ class NetWorkModule {
 
     }
 
+
     @Provides
     fun providesHackerNewsApi(retrofit: Retrofit): HackerNewsApi {
         return retrofit.create(HackerNewsApi::class.java)
     }
-
 }

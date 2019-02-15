@@ -1,7 +1,10 @@
 package com.example.mindevandroidcleanarchitecturedemo.di.module
 
 import com.example.data.api.HackerNewsApi
-import com.example.data.source.remote.HackerNewsRemoteDataSource
+import com.example.data.source.news.HackerNewsDataSource
+import com.example.data.source.news.HackerNewsDataSourceImpl
+import com.example.data.source.news.local.HackerNewsLocalDataSource
+import com.example.data.source.news.remote.HackerNewsRemoteDataSource
 import dagger.Module
 import dagger.Provides
 
@@ -10,5 +13,18 @@ class DataSourceModule {
     @Provides
     fun provideHackerNewsRemoteDataSource(hackerNewsApi: HackerNewsApi): HackerNewsRemoteDataSource {
         return HackerNewsRemoteDataSource(hackerNewsApi)
+    }
+
+    @Provides
+    fun provideHackerNewsLocalDataSource(): HackerNewsLocalDataSource {
+        return HackerNewsLocalDataSource()
+    }
+
+    @Provides
+    fun provideHackerNewsDataSource(
+        hackerNewsLocalDataSource: HackerNewsLocalDataSource,
+        hackerNewsRemoteDataSource: HackerNewsRemoteDataSource
+    ): HackerNewsDataSource {
+        return HackerNewsDataSourceImpl(hackerNewsLocalDataSource, hackerNewsRemoteDataSource)
     }
 }

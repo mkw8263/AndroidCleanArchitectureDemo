@@ -8,6 +8,9 @@ import com.example.presentation.vm.MainViewModel
 import javax.inject.Inject
 
 class MainActivity : MindevActivity<MainViewModel>() {
+//
+//    @Inject
+//    lateinit var hackerNewsUseCaseImple: HackerNewsUseCaseImpl
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -22,5 +25,9 @@ class MainActivity : MindevActivity<MainViewModel>() {
         setContentView(R.layout.activity_main)
 
         viewModel.test()
+
+//        hackerNewsUseCaseImple.getHackerNews(30).subscribe { t1, t2 ->
+//            Log.e("!!", t1.get(0).title)
+//        }.isDisposed
     }
 }

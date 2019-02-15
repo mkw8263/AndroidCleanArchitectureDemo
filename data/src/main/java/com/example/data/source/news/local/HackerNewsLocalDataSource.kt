@@ -1,6 +1,6 @@
-package com.example.data.source.local
+package com.example.data.source.news.local
 
-import com.example.data.source.HackerNewsDataSource
+import com.example.data.source.news.HackerNewsDataSource
 import com.example.domain.entity.Entity
 import io.reactivex.Single
 

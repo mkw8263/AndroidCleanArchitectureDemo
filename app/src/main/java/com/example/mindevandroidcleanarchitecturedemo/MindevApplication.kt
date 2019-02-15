@@ -16,7 +16,6 @@ class MindevApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        print("")
         DaggerMindevComponent.builder()
             .application(this)
             .build()
