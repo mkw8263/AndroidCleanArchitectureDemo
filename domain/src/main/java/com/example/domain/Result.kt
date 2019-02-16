@@ -1,19 +1,18 @@
 package com.example.domain
 
-sealed class Result<T> {
+class Result<out T>(private val status: Status, private val data: T?, val throwable: Throwable?) {
+    val loading
+        get() = status == Status.LOADING
+    val error
+        get() = status == Status.ERROR
+    val success
+        get() = status == Status.SUCCESS
 
-    /**
-     * A state of [data] which shows that we know there is still an update to come.
-     */
-    data class Loading<T>(val data: T) : Result<T>()
+    fun getData(): T? = data
 
-    /**
-     * A state that shows the [data] is the last known update.
-     */
-    data class Success<T>(val data: T) : Result<T>()
-
-    /**
-     * A state to show a [throwable] is thrown.
-     */
-    data class Error<T>(val throwable: Throwable, val data: T?) : Result<T>()
+    companion object {
+        fun <T> loading(data: T?): Result<T> = Result(Status.LOADING, data, null)
+        fun <T> error(throwable: Throwable): Result<T> = Result(Status.ERROR, null, throwable)
+        fun <T> success(data: T): Result<T> = Result(Status.SUCCESS, data, null)
+    }
 }

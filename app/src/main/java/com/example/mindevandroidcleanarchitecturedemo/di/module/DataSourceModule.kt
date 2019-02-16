@@ -1,7 +1,6 @@
 package com.example.mindevandroidcleanarchitecturedemo.di.module
 
 import com.example.data.api.HackerNewsApi
-import com.example.data.source.news.HackerNewsDataSource
 import com.example.data.source.news.HackerNewsDataSourceImpl
 import com.example.data.source.news.local.HackerNewsLocalDataSource
 import com.example.data.source.news.remote.HackerNewsRemoteDataSource
