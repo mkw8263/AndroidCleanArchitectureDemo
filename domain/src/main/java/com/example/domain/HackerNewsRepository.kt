@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface HackerNewsRepository : Repository {
 
-    fun getHackerNewsList(): Single<List<Entity.HackerNews>>
+    fun getHackerNewsList(): Single<Result<List<Entity.HackerNews>>>
 }

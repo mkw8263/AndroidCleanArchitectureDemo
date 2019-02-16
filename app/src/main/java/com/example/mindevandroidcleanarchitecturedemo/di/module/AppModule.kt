@@ -6,7 +6,7 @@ import com.example.mindevandroidcleanarchitecturedemo.di.qualifier.ApplicationCo
 import dagger.Binds
 import dagger.Module
 
-@Module
+@Module(includes = [NetWorkModule::class])
 abstract class AppModule {
 
     @ApplicationContext

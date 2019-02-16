@@ -6,7 +6,6 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,23 +15,14 @@ import java.util.concurrent.TimeUnit
 
 @Module
 class NetWorkModule {
-//    @Provides
-//    fun provideInterceptor(): Interceptor {
-//        return Interceptor { chain ->
-//            val request = chain.request()
-//
-//            chain.proceed(request.newBuilder().headers(headers).build())
-//        }
-//    }
 
     @Provides
-    fun providesOkHttpClient(interceptor: Interceptor): OkHttpClient {
+    fun providesOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().apply {
             addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
             if (BuildConfig.DEBUG) addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             connectTimeout(10, TimeUnit.SECONDS)
             readTimeout(10, TimeUnit.SECONDS)
-            addInterceptor(interceptor)
         }.build()
     }
 
@@ -53,7 +43,6 @@ class NetWorkModule {
             .build()
 
     }
-
 
     @Provides
     fun providesHackerNewsApi(retrofit: Retrofit): HackerNewsApi {

@@ -9,7 +9,7 @@ import dagger.Provides
 @Module
 class RepositoryModule {
     @Provides
-    fun provideRepository(hackerNewsDataSourceImpl: HackerNewsDataSourceImpl): HackerNewsRepository {
+    fun provideRepository(hackerNewsDataSourceImpl: HackerNewsDataSourceImpl): HackerNewsRepositoryImpl {
         return HackerNewsRepositoryImpl(hackerNewsDataSourceImpl)
     }
 }

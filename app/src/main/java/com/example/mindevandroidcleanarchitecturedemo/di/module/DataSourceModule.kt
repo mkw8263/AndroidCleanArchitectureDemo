@@ -24,7 +24,7 @@ class DataSourceModule {
     fun provideHackerNewsDataSource(
         hackerNewsLocalDataSource: HackerNewsLocalDataSource,
         hackerNewsRemoteDataSource: HackerNewsRemoteDataSource
-    ): HackerNewsDataSource {
+    ): HackerNewsDataSourceImpl {
         return HackerNewsDataSourceImpl(hackerNewsLocalDataSource, hackerNewsRemoteDataSource)
     }
 }
