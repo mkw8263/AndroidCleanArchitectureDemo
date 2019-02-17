@@ -2,9 +2,7 @@ package com.example.domain.usecase.news
 
 import com.example.domain.HackerNewsRepository
 import com.example.domain.entity.Entity
-import com.example.domain.usecase.ObservableUseCase
 import com.example.domain.usecase.SingleUseCase
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
