@@ -1,6 +1,7 @@
 package com.example.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import com.example.domain.Result
 import com.example.domain.entity.Entity
 import com.example.presentation.base.MindevActivity
 import com.example.presentation.extension.observe
+import com.example.presentation.extension.showToast
 import com.example.presentation.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -34,12 +36,12 @@ class MainActivity : MindevActivity<MainViewModel>() {
         observe(viewModel.loadingLiveData, ::loadUI)
     }
 
-    private fun errorUI(throwable: Result<Throwable>) {
-
+    private fun errorUI(state: Result<Throwable>) {
+        showToast(state.throwable?.message.orEmpty())
     }
 
     private fun loadUI(isLoading: Boolean) {
-
+        progress.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun initializeUI(response: Result<List<Entity.HackerNews>>) {
