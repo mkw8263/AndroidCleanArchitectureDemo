@@ -1,12 +1,15 @@
 package com.example.mindevandroidcleanarchitecturedemo.di.module
 
-import com.example.data.repository.HackerNewsRepositoryImpl
+import com.example.domain.HackerNewsRepository
 import com.example.domain.usecase.news.HackerNewsUseCase
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 @Module
 class UseCaseModule {
     @Provides
-    fun provideUseCase(repositoryImpl: HackerNewsRepositoryImpl) = HackerNewsUseCase(repositoryImpl)
+    fun provideUseCase(@Named("HackerNewsRepositoryImpl") hackerNewsRepository: HackerNewsRepository): HackerNewsUseCase {
+        return HackerNewsUseCase(hackerNewsRepository)
+    }
 }

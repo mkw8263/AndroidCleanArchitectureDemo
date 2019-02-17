@@ -1,11 +1,13 @@
 package com.example.mindevandroidcleanarchitecturedemo.di.module
 
 import com.example.data.api.HackerNewsApi
+import com.example.data.source.news.HackerNewsDataSource
 import com.example.data.source.news.HackerNewsDataSourceImpl
 import com.example.data.source.news.local.HackerNewsLocalDataSource
 import com.example.data.source.news.remote.HackerNewsRemoteDataSource
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 @Module
 class DataSourceModule {
@@ -15,15 +17,11 @@ class DataSourceModule {
     }
 
     @Provides
-    fun provideHackerNewsLocalDataSource(): HackerNewsLocalDataSource {
-        return HackerNewsLocalDataSource()
-    }
-
-    @Provides
+    @Named("HackerNewsDataSourceImpl")
     fun provideHackerNewsDataSource(
         hackerNewsLocalDataSource: HackerNewsLocalDataSource,
         hackerNewsRemoteDataSource: HackerNewsRemoteDataSource
-    ): HackerNewsDataSourceImpl {
+    ): HackerNewsDataSource {
         return HackerNewsDataSourceImpl(hackerNewsLocalDataSource, hackerNewsRemoteDataSource)
     }
 }
