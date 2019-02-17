@@ -1,7 +1,7 @@
 package com.example.mindevandroidcleanarchitecturedemo.di.module
 
+import com.example.mindevandroidcleanarchitecturedemo.ui.MainActivity
 import com.example.mindevandroidcleanarchitecturedemo.di.qualifier.PerActivity
-import com.example.mindevandroidcleanarchitecturedemo.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

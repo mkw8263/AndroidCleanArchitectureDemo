@@ -1,4 +1,4 @@
-package com.example.presentation
+package com.example.mindevandroidcleanarchitecturedemo.ui
 
 import android.annotation.SuppressLint
 import android.view.View

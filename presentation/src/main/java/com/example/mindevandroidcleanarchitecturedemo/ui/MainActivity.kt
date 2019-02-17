@@ -1,4 +1,4 @@
-package com.example.presentation
+package com.example.mindevandroidcleanarchitecturedemo.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,10 +7,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.Result
 import com.example.domain.entity.Entity
-import com.example.presentation.base.MindevActivity
-import com.example.presentation.extension.observe
-import com.example.presentation.extension.showToast
-import com.example.presentation.vm.MainViewModel
+import com.example.mindevandroidcleanarchitecturedemo.R
+import com.example.mindevandroidcleanarchitecturedemo.base.MindevActivity
+import com.example.mindevandroidcleanarchitecturedemo.extension.observe
+import com.example.mindevandroidcleanarchitecturedemo.extension.showToast
+import com.example.mindevandroidcleanarchitecturedemo.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
