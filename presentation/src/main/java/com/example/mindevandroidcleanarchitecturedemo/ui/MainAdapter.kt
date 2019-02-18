@@ -7,18 +7,9 @@ import com.example.domain.entity.Entity
 import com.example.mindevandroidcleanarchitecturedemo.R
 
 class MainAdapter(private var items: List<Entity.HackerNews>) : RecyclerView.Adapter<MainViewHolder>() {
-    init {
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_main,
-                parent,
-                false
-            )
-        )
+        return MainViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false))
     }
 
     override fun getItemCount(): Int {

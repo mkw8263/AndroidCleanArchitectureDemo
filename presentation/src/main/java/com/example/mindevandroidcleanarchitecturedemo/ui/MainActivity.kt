@@ -5,13 +5,12 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.Result
 import com.example.domain.entity.Entity
 import com.example.mindevandroidcleanarchitecturedemo.R
 import com.example.mindevandroidcleanarchitecturedemo.base.MindevActivity
-import com.example.mindevandroidcleanarchitecturedemo.extension.observe
-import com.example.mindevandroidcleanarchitecturedemo.extension.showToast
 import com.example.mindevandroidcleanarchitecturedemo.vm.MainViewModel
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -25,28 +24,26 @@ class MainActivity : MindevActivity<MainViewModel>() {
     override val layoutResource: Int
         get() = R.layout.activity_main
 
+    private val compositeDisposable = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setObserver()
-        viewModel.getList()
+        viewModel.run()
+            .subscribe { result ->
+                when (result) {
+                    is MainViewModel.Result.HackerNewsList -> setUpRecycler(result.items)
+                    is MainViewModel.Result.ProgressBarStatus -> setUpProgressBar(result.isLoading)
+                }
+            }.addTo(compositeDisposable)
     }
 
-    private fun setObserver() {
-        observe(viewModel.hackerNewsLiveData, ::initializeUI)
-        observe(viewModel.errorLiveData, ::errorUI)
-        observe(viewModel.loadingLiveData, ::loadUI)
+    private fun setUpProgressBar(loading: Boolean) {
+        progress.visibility = if (loading) View.VISIBLE else View.GONE
     }
 
-    private fun errorUI(state: Result<Throwable>) {
-        showToast(state.throwable?.message.orEmpty())
-    }
-
-    private fun loadUI(isLoading: Boolean) {
-        progress.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    private fun initializeUI(response: Result<List<Entity.HackerNews>>) {
-        setUpRecycler(response.getData().orEmpty())
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 
     private fun setUpRecycler(items: List<Entity.HackerNews>) {
