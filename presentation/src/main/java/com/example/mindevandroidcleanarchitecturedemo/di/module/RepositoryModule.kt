@@ -15,8 +15,8 @@ class RepositoryModule {
     @Named("HackerNewsRepositoryImpl")
     fun provideRepository(
         hackerNewsLocalDataSource: HackerNewsLocalDataSource,
-        hackerNewsRemoteDataSource: HackerNewsRemoteDataSource
-        , dataHackerNewsMapper: DataHackerNewsMapper
+        hackerNewsRemoteDataSource: HackerNewsRemoteDataSource,
+        dataHackerNewsMapper: DataHackerNewsMapper
     ): HackerNewsRepository {
         return HackerNewsRepositoryImpl(hackerNewsLocalDataSource, hackerNewsRemoteDataSource, dataHackerNewsMapper)
     }

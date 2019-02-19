@@ -12,8 +12,7 @@ class HackerNewsRepositoryImpl(
     private val hackerNewsLocalDataSource: HackerNewsLocalDataSource,
     private val hackerNewsRemoteDataSource: HackerNewsRemoteDataSource,
     private val hackerNewsMapper: DataHackerNewsMapper
-) :
-    HackerNewsRepository {
+) : HackerNewsRepository {
     override fun getHackerNewsList(page: Int?): Single<List<DomainEntity.HackerNews>> {
         return hackerNewsRemoteDataSource.getHackerNewsList(page ?: 0).map { data ->
             hackerNewsMapper.mapFromEntity(data)

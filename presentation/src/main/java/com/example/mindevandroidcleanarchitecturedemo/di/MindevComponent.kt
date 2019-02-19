@@ -1,7 +1,8 @@
 package com.example.mindevandroidcleanarchitecturedemo.di
 
 import com.example.mindevandroidcleanarchitecturedemo.MindevApplication
-import com.example.mindevandroidcleanarchitecturedemo.di.module.*
+import com.example.mindevandroidcleanarchitecturedemo.di.module.ActivityBindingModule
+import com.example.mindevandroidcleanarchitecturedemo.di.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -12,12 +13,7 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         AppModule::class,
-        ViewModelModule::class,
-        ActivityBindingModule::class,
-        UseCaseModule::class,
-        NetWorkModule::class,
-        RepositoryModule::class,
-        DataSourceModule::class]
+        ActivityBindingModule::class]
 )
 interface MindevComponent {
     @Component.Builder
