@@ -2,7 +2,8 @@ package com.example.mindevandroidcleanarchitecturedemo.di.module
 
 import com.example.data.mapper.DataHackerNewsMapper
 import com.example.data.repository.HackerNewsRepositoryImpl
-import com.example.data.source.news.HackerNewsDataSource
+import com.example.data.source.news.local.HackerNewsLocalDataSource
+import com.example.data.source.news.remote.HackerNewsRemoteDataSource
 import com.example.domain.HackerNewsRepository
 import dagger.Module
 import dagger.Provides
@@ -13,8 +14,10 @@ class RepositoryModule {
     @Provides
     @Named("HackerNewsRepositoryImpl")
     fun provideRepository(
-        @Named("HackerNewsDataSourceImpl") hackerNewsDataSource: HackerNewsDataSource, dataHackerNewsMapper: DataHackerNewsMapper
+        hackerNewsLocalDataSource: HackerNewsLocalDataSource,
+        hackerNewsRemoteDataSource: HackerNewsRemoteDataSource
+        , dataHackerNewsMapper: DataHackerNewsMapper
     ): HackerNewsRepository {
-        return HackerNewsRepositoryImpl(hackerNewsDataSource, dataHackerNewsMapper)
+        return HackerNewsRepositoryImpl(hackerNewsLocalDataSource, hackerNewsRemoteDataSource, dataHackerNewsMapper)
     }
 }
