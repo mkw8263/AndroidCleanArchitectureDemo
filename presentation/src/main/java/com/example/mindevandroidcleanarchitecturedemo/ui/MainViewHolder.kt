@@ -3,12 +3,12 @@ package com.example.mindevandroidcleanarchitecturedemo.ui
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.entity.Entity
+import com.example.mindevandroidcleanarchitecturedemo.entities.PresentationEntity
 import kotlinx.android.synthetic.main.item_main.view.*
 
 class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     @SuppressLint("SetTextI18n")
-    fun bind(item: Entity.HackerNews) {
+    fun bind(item: PresentationEntity.HackerNews) {
         itemView.tvNumber.text = "# $layoutPosition"
         itemView.tvTimeAgo.text = item.time_ago
         itemView.tvContent.text = item.title

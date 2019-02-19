@@ -1,5 +1,6 @@
 package com.example.mindevandroidcleanarchitecturedemo.di.module
 
+import com.example.data.mapper.DataHackerNewsMapper
 import com.example.data.repository.HackerNewsRepositoryImpl
 import com.example.data.source.news.HackerNewsDataSource
 import com.example.domain.HackerNewsRepository
@@ -11,7 +12,9 @@ import javax.inject.Named
 class RepositoryModule {
     @Provides
     @Named("HackerNewsRepositoryImpl")
-    fun provideRepository(@Named("HackerNewsDataSourceImpl") hackerNewsDataSource: HackerNewsDataSource): HackerNewsRepository {
-        return HackerNewsRepositoryImpl(hackerNewsDataSource)
+    fun provideRepository(
+        @Named("HackerNewsDataSourceImpl") hackerNewsDataSource: HackerNewsDataSource, dataHackerNewsMapper: DataHackerNewsMapper
+    ): HackerNewsRepository {
+        return HackerNewsRepositoryImpl(hackerNewsDataSource, dataHackerNewsMapper)
     }
 }

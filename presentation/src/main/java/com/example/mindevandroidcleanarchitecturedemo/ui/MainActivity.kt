@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.Result
-import com.example.domain.entity.Entity
+import com.example.domain.entities.DomainEntity
 import com.example.mindevandroidcleanarchitecturedemo.R
 import com.example.mindevandroidcleanarchitecturedemo.base.MindevActivity
+import com.example.mindevandroidcleanarchitecturedemo.entities.PresentationEntity
 import com.example.mindevandroidcleanarchitecturedemo.extension.observe
 import com.example.mindevandroidcleanarchitecturedemo.extension.showToast
 import com.example.mindevandroidcleanarchitecturedemo.vm.MainViewModel
@@ -45,11 +46,11 @@ class MainActivity : MindevActivity<MainViewModel>() {
         progress.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun initializeUI(response: Result<List<Entity.HackerNews>>) {
+    private fun initializeUI(response: Result<List<PresentationEntity.HackerNews>>) {
         setUpRecycler(response.getData().orEmpty())
     }
 
-    private fun setUpRecycler(items: List<Entity.HackerNews>) {
+    private fun setUpRecycler(items: List<PresentationEntity.HackerNews>) {
         recyclerList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = MainAdapter(items)
