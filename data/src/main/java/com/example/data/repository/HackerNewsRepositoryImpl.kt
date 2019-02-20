@@ -8,7 +8,7 @@ import com.example.domain.entities.DomainEntity
 import io.reactivex.Observable
 import io.reactivex.Single
 
-class HackerNewsRepositoryImpl(
+open class HackerNewsRepositoryImpl(
     private val hackerNewsLocalDataSource: HackerNewsLocalDataSource,
     private val hackerNewsRemoteDataSource: HackerNewsRemoteDataSource,
     private val hackerNewsMapper: DataHackerNewsMapper

@@ -5,12 +5,12 @@ import com.example.data.entities.DataEntity
 import io.reactivex.Observable
 import io.reactivex.Single
 
-class HackerNewsRemoteDataSource(private val hackerNewsApi: HackerNewsApi) {
-    fun getHackerNewsList(page: Int): Single<List<DataEntity.HackerNews>> {
+open class HackerNewsRemoteDataSource(private val hackerNewsApi: HackerNewsApi) {
+    open fun getHackerNewsList(page: Int): Single<List<DataEntity.HackerNews>> {
         return hackerNewsApi.getHackerNews(page)
     }
 
-    fun getHackerNewsListOB(page: Int): Observable<List<DataEntity.HackerNews>> {
+    open fun getHackerNewsListOB(page: Int): Observable<List<DataEntity.HackerNews>> {
         return hackerNewsApi.getHackerNewsOB(page)
     }
 }
