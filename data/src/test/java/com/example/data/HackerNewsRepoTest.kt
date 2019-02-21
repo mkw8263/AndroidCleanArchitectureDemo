@@ -19,7 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class HackerNewsRepoTest {
     private var hackerNewsApi = providesRetrofit()
 
-
     @Test
     fun `check, remote data values`() {
         val list: MutableList<DataEntity.HackerNews> = mutableListOf()
