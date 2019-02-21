@@ -4,7 +4,8 @@ import com.example.data.entities.DataEntity
 import com.example.domain.entities.DomainEntity
 import javax.inject.Inject
 
-class DataHackerNewsMapper @Inject constructor() : DataMapper<List<DataEntity.HackerNews>, List<DomainEntity.HackerNews>> {
+open class DataHackerNewsMapper @Inject constructor() :
+    DataMapper<List<DataEntity.HackerNews>, List<DomainEntity.HackerNews>> {
     override fun mapFromEntity(type: List<DataEntity.HackerNews>): List<DomainEntity.HackerNews> {
         return type.map { data ->
             DomainEntity.HackerNews(data.comments_count, data.id, data.time_ago, data.title)

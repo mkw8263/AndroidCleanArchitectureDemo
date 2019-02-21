@@ -23,10 +23,12 @@ class HackerNewsRepoTest {
     @Test
     fun `check, remote data values`() {
         val list: MutableList<DataEntity.HackerNews> = mutableListOf()
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+        list.apply {
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+        }
 
         val hackerNewsRemoteDataSource: HackerNewsRemoteDataSource = mock()
         given { hackerNewsRemoteDataSource.getHackerNewsList(3) }.willReturn(Single.just(list))
@@ -43,19 +45,23 @@ class HackerNewsRepoTest {
     @Test
     fun `check, DataEntity change DomainEntity`() {
         val list: ArrayList<DataEntity.HackerNews> = ArrayList()
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
-        list.add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+        list.apply {
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+            add(DataEntity.HackerNews(0, "1", 0, 0, 0, "1", "1", "1", "1", "1"))
+        }
 
         val hackerNewsRemoteDataSource: HackerNewsRemoteDataSource = mock()
         given { hackerNewsRemoteDataSource.getHackerNewsList(3) }.willReturn(Single.just(list))
 
         val list2: ArrayList<DomainEntity.HackerNews> = ArrayList()
-        list2.add(DomainEntity.HackerNews(0, 0, "1", "1"))
-        list2.add(DomainEntity.HackerNews(0, 0, "1", "1"))
-        list2.add(DomainEntity.HackerNews(0, 0, "1", "1"))
-        list2.add(DomainEntity.HackerNews(0, 0, "1", "1"))
+        list2.apply {
+            add(DomainEntity.HackerNews(0, 0, "1", "1"))
+            add(DomainEntity.HackerNews(0, 0, "1", "1"))
+            add(DomainEntity.HackerNews(0, 0, "1", "1"))
+            add(DomainEntity.HackerNews(0, 0, "1", "1"))
+        }
 
         val hackerNewsMapper = DataHackerNewsMapper()
         hackerNewsRemoteDataSource.getHackerNewsList(3)
@@ -71,14 +77,15 @@ class HackerNewsRepoTest {
     @Test
     fun `check, repository data`() {
         val list: MutableList<DomainEntity.HackerNews> = mutableListOf()
-        list.add(DomainEntity.HackerNews(0, 0, "1"))
-        list.add(DomainEntity.HackerNews(0, 0, "1"))
-        list.add(DomainEntity.HackerNews(0, 0, "1"))
-        list.add(DomainEntity.HackerNews(0, 0, "1"))
+        list.apply {
+            add(DomainEntity.HackerNews(0, 0, "1"))
+            add(DomainEntity.HackerNews(0, 0, "1"))
+            add(DomainEntity.HackerNews(0, 0, "1"))
+            add(DomainEntity.HackerNews(0, 0, "1"))
+        }
 
         val hackerNewsRepositoryImpl: HackerNewsRepositoryImpl = mock()
         given { hackerNewsRepositoryImpl.getHackerNewsList(3) }.willReturn(Single.just(list))
-
         hackerNewsRepositoryImpl.getHackerNewsList(3)
             .test()
             .assertNoErrors()

@@ -7,7 +7,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class HackerNewsUseCase(private val hackerNewsRepository: HackerNewsRepository) :
+open class HackerNewsUseCase(private val hackerNewsRepository: HackerNewsRepository) :
     SingleUseCase<HackerNewsUseCase.Param, List<DomainEntity.HackerNews>> {
 
     override fun execute(params: Param?): Single<List<DomainEntity.HackerNews>> {
@@ -27,6 +27,5 @@ class HackerNewsUseCase(private val hackerNewsRepository: HackerNewsRepository) 
 //            .subscribeOn(Schedulers.io())
 //            .observeOn(AndroidSchedulers.mainThread())
 //    }
-//
 //    data class Param(val page: Int)
 //}
