@@ -3,11 +3,12 @@ Languages, libraries and tools used
 
 * Kotlin
 * AAC ViewModel
+* LiveData
 * AndroidX Support Libraries
 * RxKotlin
 * Dagger2
 * Retrofit
-* OkHttp
+* OkHttp3
 * Gson
 * Mockito
 
