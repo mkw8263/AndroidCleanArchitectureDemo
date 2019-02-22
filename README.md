@@ -1,7 +1,7 @@
 Screenshots
 ----------------- 
 
-![image](https://github.com/mkw8263/AndroidCleanArchitectureDemo/blob/master/screenshots.png)
+![image](https://github.com/mkw8263/AndroidCleanArchitectureDemo/blob/master/preview.png)
 
 
 REST API
