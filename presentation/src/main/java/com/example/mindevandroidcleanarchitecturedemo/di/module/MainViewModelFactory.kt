@@ -7,7 +7,7 @@ import com.example.mindevandroidcleanarchitecturedemo.mapper.PresentationHackerN
 import com.example.mindevandroidcleanarchitecturedemo.vm.MainViewModel
 
 @Suppress("UNCHECKED_CAST")
-class MainViewModelFactory(
+open class MainViewModelFactory(
     private val hackerNewsUseCase: HackerNewsUseCase,
     private val presentationHackerNewsMapper: PresentationHackerNewsMapper
 ) : ViewModelProvider.Factory {

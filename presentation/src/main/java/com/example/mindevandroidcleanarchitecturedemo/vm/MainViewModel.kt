@@ -1,7 +1,6 @@
 package com.example.mindevandroidcleanarchitecturedemo.vm
 
 import androidx.lifecycle.MutableLiveData
-import com.example.domain.Result
 import com.example.domain.usecase.news.HackerNewsUseCase
 import com.example.mindevandroidcleanarchitecturedemo.base.MindevViewModel
 import com.example.mindevandroidcleanarchitecturedemo.entities.PresentationEntity
@@ -13,18 +12,22 @@ class MainViewModel @Inject constructor(
     private val presentationHackerNewsMapper: PresentationHackerNewsMapper
 ) : MindevViewModel() {
 
-    val hackerNewsLiveData = MutableLiveData<Result<List<PresentationEntity.HackerNews>>>()
-    val errorLiveData = MutableLiveData<Result<Throwable>>()
-    val loadingLiveData = MutableLiveData<Boolean>()
+    sealed class Result {
+        data class NewsData(val data: List<PresentationEntity.HackerNews>) : Result()
+        data class ShowError(val throwable: Throwable) : Result()
+        data class ProgressBarVisibility(val isLoading: Boolean) : Result()
+    }
+
+    val liveResult = MutableLiveData<Result>()
 
     fun getList() {
-        loadingLiveData.postValue(true)
+        liveResult.postValue(Result.ProgressBarVisibility(true))
         addDisposable(hackerNewsUseCase.execute(HackerNewsUseCase.Param(30))
             .subscribe { response, error ->
-                loadingLiveData.postValue(false)
-                if (error != null) errorLiveData.value = Result.error(error)
-                else hackerNewsLiveData.value =
-                    Result.success(response.map { presentationHackerNewsMapper.mapToView(it) })
+                liveResult.postValue(Result.ProgressBarVisibility(false))
+                if (error != null) liveResult.value = Result.ShowError(error)
+                else liveResult.value =
+                    Result.NewsData(response.map { presentationHackerNewsMapper.mapToView(it) })
             })
     }
 }

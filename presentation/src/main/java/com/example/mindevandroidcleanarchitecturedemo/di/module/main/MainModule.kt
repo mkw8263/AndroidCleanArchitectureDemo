@@ -7,13 +7,14 @@ import com.example.data.source.news.local.HackerNewsLocalDataSource
 import com.example.data.source.news.remote.HackerNewsRemoteDataSource
 import com.example.domain.HackerNewsRepository
 import com.example.domain.usecase.news.HackerNewsUseCase
-import com.example.mindevandroidcleanarchitecturedemo.di.module.ViewModelModule
+import com.example.mindevandroidcleanarchitecturedemo.di.module.MainViewModelFactory
 import com.example.mindevandroidcleanarchitecturedemo.di.qualifier.PerActivity
+import com.example.mindevandroidcleanarchitecturedemo.mapper.PresentationHackerNewsMapper
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
 
-@Module(includes = [ViewModelModule::class])
+@Module
 class MainModule {
 
     @Provides
@@ -37,5 +38,14 @@ class MainModule {
     @PerActivity
     fun provideHackerNewsUseCase(@Named("HackerNewsRepositoryImpl") hackerNewsRepository: HackerNewsRepository): HackerNewsUseCase {
         return HackerNewsUseCase(hackerNewsRepository)
+    }
+
+    @Provides
+    @PerActivity
+    fun provideMainViewModelFactory(
+        hackerNewsUseCase: HackerNewsUseCase,
+        presentationHackerNewsMapper: PresentationHackerNewsMapper
+    ): MainViewModelFactory {
+        return MainViewModelFactory(hackerNewsUseCase, presentationHackerNewsMapper)
     }
 }
