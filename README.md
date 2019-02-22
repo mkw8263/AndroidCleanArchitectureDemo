@@ -19,4 +19,4 @@ Architectural approach
 
 Dagger
 -----------------
-![image](https://github.com/mkw8263/AndroidCleanArchitectureDemo/blob/master/dagger.png)
+![image](https://github.com/mkw8263/AndroidCleanArchitectureDemo/blob/master/dagger2.png)
