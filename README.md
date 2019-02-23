@@ -1,3 +1,15 @@
+Android Clean Architecture
+----------------- 
+
+Hi👋:)
+
+I created clean architecture samples for three purposes.
+
+1. Study on clean architecture
+2. Modular separation
+3. Unit test using Mockito
+
+
 Screenshots
 ----------------- 
 
