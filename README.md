@@ -1,4 +1,4 @@
-Android Clean Architecture
+Explanation
 ----------------- 
 
 Hi👋:)
@@ -46,7 +46,7 @@ Architectural approach
 ![image](https://github.com/mkw8263/AndroidCleanArchitectureDemo/blob/master/architecture.png)
 
 
-Dagger
+Dagger2
 -----------------
 ![image](https://github.com/mkw8263/AndroidCleanArchitectureDemo/blob/master/dagger2.png)
 
