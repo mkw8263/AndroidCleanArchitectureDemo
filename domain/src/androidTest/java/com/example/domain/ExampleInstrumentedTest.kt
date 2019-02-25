@@ -1,15 +1,15 @@
-package com.example.mindevandroidcleanarchitecturedemo
+package com.example.domain
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
-import junit.framework.Assert
+import junit.framework.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
  * Instrumented test, which will execute on an Android device.
  *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        Assert.assertEquals("com.example.presenter.test", appContext.packageName)
+        assertEquals("com.example.domain.test", appContext.packageName)
     }
 }

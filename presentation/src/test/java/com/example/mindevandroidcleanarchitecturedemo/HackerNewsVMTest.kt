@@ -33,26 +33,26 @@ class HackerNewsVMTest {
     @Test
     fun `live data, hacker news success`() {
         val value = listOf(PresentationEntity.HackerNews(0, 0, "1", "1"))
-        mainViewModel.liveResult.postValue(MainViewModel.Result.NewsData(value))
+        mainViewModel.mutableLiveResult.postValue(MainViewModel.Result.NewsData(value))
         assertEquals(value, (mainViewModel.liveResult.value as MainViewModel.Result.NewsData).data)
     }
 
     @Test
     fun `live data, hacker news error`() {
         val value = Throwable(" error ")
-        mainViewModel.liveResult.postValue(MainViewModel.Result.ShowError(value))
+        mainViewModel.mutableLiveResult.postValue(MainViewModel.Result.ShowError(value))
         assertEquals(value, (mainViewModel.liveResult.value as MainViewModel.Result.ShowError).throwable)
     }
 
     @Test
     fun `live data, hacker news loading`() {
-        mainViewModel.liveResult.postValue(MainViewModel.Result.ProgressBarVisibility(true))
-        mainViewModel.liveResult.postValue(MainViewModel.Result.ProgressBarVisibility(false))
+        mainViewModel.mutableLiveResult.postValue(MainViewModel.Result.ProgressBarVisibility(true))
+        mainViewModel.mutableLiveResult.postValue(MainViewModel.Result.ProgressBarVisibility(false))
         assertEquals(false, (mainViewModel.liveResult.value as MainViewModel.Result.ProgressBarVisibility).isLoading)
     }
 
     @Test
-    fun `DomainEntity change Presentation Entity`() {
+    fun `ui entity, DomainEntity change Presentation Entity`() {
         val presentationHackerNewsMapper = PresentationHackerNewsMapper()
         val domainEntity = DomainEntity.HackerNews(0, 0, "1", "1")
         println("domainEntity comments_count${domainEntity.comments_count}")

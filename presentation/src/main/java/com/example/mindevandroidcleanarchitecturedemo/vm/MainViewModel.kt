@@ -1,13 +1,14 @@
 package com.example.mindevandroidcleanarchitecturedemo.vm
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.domain.usecase.news.HackerNewsUseCase
 import com.example.mindevandroidcleanarchitecturedemo.base.MindevViewModel
 import com.example.mindevandroidcleanarchitecturedemo.entities.PresentationEntity
 import com.example.mindevandroidcleanarchitecturedemo.mapper.PresentationHackerNewsMapper
-import javax.inject.Inject
+import io.reactivex.rxkotlin.addTo
 
-class MainViewModel @Inject constructor(
+class MainViewModel(
     private val hackerNewsUseCase: HackerNewsUseCase,
     private val presentationHackerNewsMapper: PresentationHackerNewsMapper
 ) : MindevViewModel() {
@@ -18,16 +19,17 @@ class MainViewModel @Inject constructor(
         data class ProgressBarVisibility(val isLoading: Boolean) : Result()
     }
 
-    val liveResult = MutableLiveData<Result>()
+    val mutableLiveResult = MutableLiveData<Result>()
+    val liveResult: LiveData<Result> = mutableLiveResult
 
     fun getList() {
-        liveResult.postValue(Result.ProgressBarVisibility(true))
-        addDisposable(hackerNewsUseCase.execute(HackerNewsUseCase.Param(30))
+        mutableLiveResult.value = Result.ProgressBarVisibility(true)
+        hackerNewsUseCase.execute(HackerNewsUseCase.Param(30))
             .subscribe { response, error ->
-                liveResult.postValue(Result.ProgressBarVisibility(false))
-                if (error != null) liveResult.value = Result.ShowError(error)
-                else liveResult.value =
+                mutableLiveResult.value = Result.ProgressBarVisibility(false)
+                if (error != null) mutableLiveResult.value = Result.ShowError(error)
+                else mutableLiveResult.value =
                     Result.NewsData(response.map { presentationHackerNewsMapper.mapToView(it) })
-            })
+            }.addTo(compositeDisposable)
     }
 }
