@@ -1,6 +1,8 @@
 package com.example.data
 
 import com.example.data.api.HackerNewsApi
+import com.example.data.entities.DataEntity
+import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import org.junit.Test
 import retrofit2.Retrofit
@@ -12,6 +14,23 @@ class HackerNewsRepoTest {
 
     @Test
     fun `check, remote data values`() {
+        val reviews = Gson().fromJson(
+            javaClass.classLoader!!.getResourceAsStream("GetHackerNews.json").bufferedReader().use { it.readText() },
+            Array<DataEntity.HackerNews>::class.java
+        )
+        reviews.forEach { data ->
+            with(data) {
+                println("comments_count: $comments_count ")
+                println("id: $id ")
+                println("points: $points ")
+                println("time: $time ")
+                println("time_ago: $time_ago ")
+                println("title: $title ")
+                println("type: $type ")
+                println("url: $url ")
+                println("user: $user ")
+            }
+        }
     }
 
     @Test
