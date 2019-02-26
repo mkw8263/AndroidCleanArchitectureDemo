@@ -96,9 +96,10 @@ class HackerNewsRepoTest {
 
     @Test
     fun `network request`() {
-        val result = hackerNewsApi.getHackerNews(3).map { data ->
-            data.map { "title: ${it.title}, time_ago: ${it.time_ago}, comments_count: ${it.comments_count}, user: ${it.user}\n" }
-        }.blockingGet()
+        val result = hackerNewsApi.getHackerNews(3)
+            .map { data ->
+                data.map { "title: ${it.title}, time_ago: ${it.time_ago}, comments_count: ${it.comments_count}, user: ${it.user}\n" }
+            }.blockingGet()
         print(result)
     }
 
