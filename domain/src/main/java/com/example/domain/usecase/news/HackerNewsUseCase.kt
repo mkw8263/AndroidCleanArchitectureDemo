@@ -8,7 +8,6 @@ import io.reactivex.Single
 
 open class HackerNewsUseCase(private val hackerNewsRepository: HackerNewsRepository) :
     SingleUseCase<HackerNewsUseCase.Param, List<DomainEntity.HackerNews>> {
-
     override fun execute(params: Param?): Single<List<DomainEntity.HackerNews>> {
         return hackerNewsRepository.getHackerNewsList(params?.page)
             .networkCommunityThread()
