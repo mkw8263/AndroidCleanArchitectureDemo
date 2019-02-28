@@ -5,8 +5,8 @@ import com.example.data.api.HackerNewsApi
 import com.example.data.entities.DataEntity
 import com.example.data.mapper.DataHackerNewsMapper
 import com.example.data.repository.HackerNewsRepositoryImpl
-import com.example.data.source.news.local.HackerNewsLocalDataSource
-import com.example.data.source.news.remote.HackerNewsRemoteDataSource
+import com.example.data.source.news.local.HackerNewsLocalData
+import com.example.data.source.news.remote.HackerNewsRemoteData
 import com.example.domain.entities.DomainEntity
 import com.example.domain.usecase.news.HackerNewsUseCase
 import com.example.mindevandroidcleanarchitecturedemo.entities.PresentationEntity
@@ -33,8 +33,9 @@ class HackerNewsVMTest {
     private lateinit var mainViewModel: MainViewModel
 
     private val presentationHackerNewsMapper = PresentationHackerNewsMapper()
-    lateinit var domainEntity: List<DomainEntity.HackerNews>
-    lateinit var presentationEntity: List<PresentationEntity.HackerNews>
+    private lateinit var domainEntity: List<DomainEntity.HackerNews>
+    private lateinit var presentationEntity: List<PresentationEntity.HackerNews>
+
     @Before
     fun setUp() {
         domainEntity = Gson().fromJson(fromResourceJsonFile(), Array<DataEntity.HackerNews>::class.java)
@@ -48,8 +49,8 @@ class HackerNewsVMTest {
         }
 
         val hackerNewsRepositoryImpl = HackerNewsRepositoryImpl(
-            HackerNewsLocalDataSource(),
-            HackerNewsRemoteDataSource(providesRetrofit()),
+            HackerNewsLocalData(),
+            HackerNewsRemoteData(providesRetrofit()),
             DataHackerNewsMapper()
         )
 
@@ -99,7 +100,7 @@ class HackerNewsVMTest {
     private fun okHttpClient(): OkHttpClient.Builder {
         return OkHttpClient.Builder().addInterceptor { chain ->
             val response: Response = chain.proceed(chain.request().newBuilder().build())
-            val content = URLDecoder.decode(fromResourceJsonFile(), "utf-8")
+            val content = URLDecoder.decode(fromResourceJsonFile(), UTF_8)
             val responseBody = ResponseBody.create(response.body()?.contentType(), content)
 
             response.newBuilder()
@@ -128,5 +129,6 @@ class HackerNewsVMTest {
 
     companion object {
         const val resource: String = "GetHackerNews.json"
+        const val UTF_8 = "utf-8"
     }
 }

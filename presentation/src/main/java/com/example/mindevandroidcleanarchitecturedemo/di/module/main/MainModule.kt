@@ -3,8 +3,8 @@ package com.example.mindevandroidcleanarchitecturedemo.di.module.main
 import com.example.data.api.HackerNewsApi
 import com.example.data.mapper.DataHackerNewsMapper
 import com.example.data.repository.HackerNewsRepositoryImpl
-import com.example.data.source.news.local.HackerNewsLocalDataSource
-import com.example.data.source.news.remote.HackerNewsRemoteDataSource
+import com.example.data.source.news.local.HackerNewsLocalData
+import com.example.data.source.news.remote.HackerNewsRemoteData
 import com.example.domain.HackerNewsRepository
 import com.example.domain.usecase.news.HackerNewsUseCase
 import com.example.mindevandroidcleanarchitecturedemo.di.module.MainViewModelFactory
@@ -21,17 +21,17 @@ class MainModule {
     @PerActivity
     @Named("HackerNewsRepositoryImpl")
     fun provideRepository(
-        hackerNewsLocalDataSource: HackerNewsLocalDataSource,
-        hackerNewsRemoteDataSource: HackerNewsRemoteDataSource,
+        hackerNewsLocalData: HackerNewsLocalData,
+        hackerNewsRemoteData: HackerNewsRemoteData,
         dataHackerNewsMapper: DataHackerNewsMapper
     ): HackerNewsRepository {
-        return HackerNewsRepositoryImpl(hackerNewsLocalDataSource, hackerNewsRemoteDataSource, dataHackerNewsMapper)
+        return HackerNewsRepositoryImpl(hackerNewsLocalData, hackerNewsRemoteData, dataHackerNewsMapper)
     }
 
     @Provides
     @PerActivity
-    fun provideHackerNewsRemoteDataSource(hackerNewsApi: HackerNewsApi): HackerNewsRemoteDataSource {
-        return HackerNewsRemoteDataSource(hackerNewsApi)
+    fun provideHackerNewsRemoteDataSource(hackerNewsApi: HackerNewsApi): HackerNewsRemoteData {
+        return HackerNewsRemoteData(hackerNewsApi)
     }
 
     @Provides

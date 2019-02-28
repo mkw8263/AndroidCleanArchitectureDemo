@@ -5,7 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-open class HackerNewsLocalDataSource @Inject constructor() {
+open class HackerNewsLocalData @Inject constructor() {
     fun getHackerNewsList(page: Int): Single<List<DataEntity.HackerNews>> {
         return Single.never()
     }

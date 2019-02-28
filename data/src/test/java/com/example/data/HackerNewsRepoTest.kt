@@ -62,7 +62,7 @@ class HackerNewsRepoTest {
     private fun okHttpClient(): OkHttpClient.Builder {
         return OkHttpClient.Builder().addInterceptor { chain ->
             val response: Response = chain.proceed(chain.request().newBuilder().build())
-            val content = URLDecoder.decode(fromResourceJsonFile(), "utf-8")
+            val content = URLDecoder.decode(fromResourceJsonFile(), UTF_8)
             val responseBody = ResponseBody.create(response.body()?.contentType(), content)
 
             response.newBuilder()
@@ -91,5 +91,6 @@ class HackerNewsRepoTest {
 
     companion object {
         const val resource: String = "GetHackerNews.json"
+        const val UTF_8 = "utf-8"
     }
 }
